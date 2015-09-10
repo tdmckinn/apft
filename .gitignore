@@ -1,0 +1,14 @@
+﻿# App artifacts
+/wwwroot 
+
+# Static artifacts
+/node_modules
+
+# frontend assets not commonjs packages
+/bower_components
+
+# sematic stuff
+/semantic
+
+#typings
+/typings
