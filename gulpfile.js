@@ -10,13 +10,12 @@ var clean = require('gulp-clean');
 
 gulp.task("scripts", function (callback) {
 
-  return gulp.src(['./scripts', './scripts/**/*.tsx'])
-    .pipe(clean({ force: true }))
+  return gulp.src(['./scripts', './scripts/*.json', './scripts/**/*.tsx'])
     .pipe(gulp.dest('./wwwroot/'));
 
 });
 
-gulp.task('webpack', ['scripts'], function (cb) {
+gulp.task('webpack', ['default', 'scripts'], function (cb) {
   // run webpack
   webpack(require('./webpack.config.js'), function (err, stats) {
     if (err) throw new gutil.PluginError("webpack", err);
@@ -28,5 +27,6 @@ gulp.task('webpack', ['scripts'], function (cb) {
 });
 
 gulp.task('default', function () {
-    // place code for your default task here
+  return gulp.src('./wwwroot', { read: false })
+     .pipe(clean());
 });

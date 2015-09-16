@@ -9,12 +9,16 @@ import MainSection from '../components/MainSection';
 import * as ApftActions from '../actions/index';
 
 interface Props {
-  apft: Function,
+  apft: Object,
   dispatch: Function
 }
 
 class App extends React.Component<Props, any> {
- 
+
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     const { apft, dispatch } = this.props;
 
@@ -29,10 +33,11 @@ class App extends React.Component<Props, any> {
 
 function mapStateToProps(state: any): Object {
 
-  const { apft } = state;
+  const { apft, dispatch } = state
 
   return {
-    apft
+    apft,
+    dispatch
   };
 }
 

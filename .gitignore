@@ -11,4 +11,7 @@
 /semantic
 
 #typings
-/typings
+#/typings
+
+/scripts/**/*.map
+/scripts/**/*.jsx

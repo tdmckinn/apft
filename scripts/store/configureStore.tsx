@@ -3,12 +3,12 @@
 
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers/index';
-import * as thunkMiddleware from "redux-thunk";
+import thunkMiddleware from "redux-thunk";
 
 const createStoreWithMiddlesware: Function = applyMiddleware(
   thunkMiddleware
 )(createStore);
 
-export default function configureStore(initialState) {
-   return createStoreWithMiddleware(rootReducer, initialState);
+export default function configureStore(initialState?: any) {
+  return createStoreWithMiddlesware(rootReducer, initialState);
 }
