@@ -4,7 +4,8 @@ import * as React from 'react';
 import ApftCalculator from './ApftCalculator'
 
 interface Props {
-  events: Object
+  apft: Object,
+  dispatch: Function
 }
 
 export default class MainSection extends React.Component<Props, any> {
@@ -13,9 +14,12 @@ export default class MainSection extends React.Component<Props, any> {
   }
 
   render() {
+
+    const { apft, dispatch } = this.props;
+
     return (
       <div>
-        <ApftCalculator foo="temple"/>
+        <ApftCalculator apft={apft} dispatch={dispatch} />
         <div>Im the main body</div>
       </div>
     )

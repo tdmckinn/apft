@@ -25,7 +25,7 @@ class App extends React.Component<Props, any> {
     return (
     <div>
       <Header />
-      <MainSection events={apft} />
+      <MainSection apft={apft} dispatch={dispatch}/>
     </div>
     );
   }

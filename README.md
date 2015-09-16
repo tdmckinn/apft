@@ -20,6 +20,9 @@ $ npm install
 $ npm install tsd -g
 $ npm install --global gulp
 $ npm install -g typescript
+
+gulp webpack 
+gulp theme
 ```
 
 ## Structure
