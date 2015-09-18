@@ -7,7 +7,7 @@ var gulp = require("gulp");
 var gutil = require("gulp-util");
 var webpack = require("webpack");
 var clean = require('gulp-clean');
-var sass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 
 gulp.task("scripts", function (callback) {
 
@@ -16,7 +16,7 @@ gulp.task("scripts", function (callback) {
 
 });
 
-gulp.task('webpack', ['scripts'], function (cb) {
+gulp.task('webpack', ['scripts', 'styles'], function (cb) {
   // run webpack
   webpack(require('./webpack.config.js'), function (err, stats) {
     if (err) throw new gutil.PluginError("webpack", err);
@@ -27,17 +27,18 @@ gulp.task('webpack', ['scripts'], function (cb) {
   });
 });
 
-gulp.task('sass', function () {
-  return gulp.src('./styles/**/*.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('./wwwroot/assets/styles'));
-});
-
+ 
 gulp.task('theme', function () {
 
   return gulp.src(['./semantic/dist/**/*'])
   .pipe(gulp.dest('./wwwroot/assets/sematic/dist'));
 
+});
+
+gulp.task('styles', function () {
+  gulp.src('./styles/**/*.scss')
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest('./wwwroot/assets/styles/'));
 });
 
 gulp.task('default', function () {

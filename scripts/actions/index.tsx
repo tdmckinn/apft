@@ -10,7 +10,7 @@ const CALC_APFT_SCORE: string = 'CALC_APFT_SCORE'
 const EDIT_PT_EVENT: string = 'EDIT_PT_EVENT'
 const RESET_PT_SHEET: string = 'RESET_PT_SHEET'
 const GET_CSV_DATA: string = 'GET_CSV_DATA'
-const ROOT = 'http://localhost:3000'
+const ROOT = 'http://localhost:61292'
 
 export const ActionTypes = {
   CALC_APFT_SCORE,
@@ -46,7 +46,7 @@ export function recieveCsvData(eventStandards: JSON) {
 
 export function loadCsvData() {
   return dispatch => {
-    request.get(`${ROOT}/api/home/apftStandards`)
+    request.get(`${ROOT}/api/apft`)
       .set('Accept', 'application/json')
       .end(function (err, res) {
         debugger;

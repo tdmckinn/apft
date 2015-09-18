@@ -9,7 +9,7 @@ export default class Header extends React.Component<{}, {}> {
 
   render() {
     return (
-      <div><h3>Hello Again</h3></div>
+      <div style={{ display: 'none' }}></div>
     )
   }
 }

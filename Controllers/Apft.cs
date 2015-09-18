@@ -1,21 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using System.IO;
+using CsvHelper;
+using System.Web.Hosting;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ArmyApftTs.Controllers
 {
-    [Route("api/[controller]")]
-    public class Home : Controller
+  [Route("api/[controller]")]
+    public class Apft : Controller
     {
-        // GET: api/home/apftStandards
+        // GET: api/apft
+        // Get All Apft standards
         [HttpGet]
-        public IEnumerable<string> Get()
+        public String Get()
         {
-            return new string[] { "value1", "value2" };
+
+            // TextReader reader = System.IO.File.OpenText(HostingEnvironment.MapPath(@"~/data/male-situp-standars.csv"));
+
+            //var csv = new CsvReader(reader);
+
+
+            //
+            // Read entire text file with TextReader.
+            //
+            //using (TextReader reader = File.OpenText(@"C:\perl.txt"))
+            //{
+            //  string text = reader.ReadToEnd();
+            //  Console.WriteLine(text.Length);
+            //}
+            return "";
         }
 
         // GET api/values/5

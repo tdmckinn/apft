@@ -1,4 +1,22 @@
 ﻿
+// Note get rid of importants someday :(
+.apft-card-container{
 
-body {
+  $inline-block: inline-block !important;
+
+  div{ 
+    label{
+      display: $inline-block;
+      padding-top: 7px;
+      width: 15%;
+    }
+
+    input {
+      display: $inline-block;
+      width: 50% !important;
+      margin-left: 15px !important;
+    }
+  }
+
+
 }

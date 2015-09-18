@@ -50,7 +50,8 @@ gulp theme
 
 
 ### Notes
-Encounterd an issue using typescript compiler for both jsx and es6 transpiling. So I essentially made this a two step process, tsc for typescript and babel for es6 transpiling see webpack config and tsconfig.
+* Encounterd an issue using typescript compiler for both jsx and es6 transpiling. So I essentially made this a two step process, tsc for typescript and babel for es6 transpiling see webpack config and tsconfig.
+* Example is not completely optimized 
 
 ## License
 
