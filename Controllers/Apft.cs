@@ -3,6 +3,7 @@ using Microsoft.AspNet.Mvc;
 using System.IO;
 using CsvHelper;
 using System.Web.Hosting;
+using Microsoft.AspNet.Hosting;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,33 +12,41 @@ namespace ArmyApftTs.Controllers
   [Route("api/[controller]")]
     public class Apft : Controller
     {
+
+        private IHostingEnvironment env = null;
+        private string situpsCsv = "";
+        private string pushupsCsv = "";
+        private string twomilerunCsv = "";
+
+        public Apft(IHostingEnvironment environment)
+        {
+            env = environment;
+
+            /** Store these csv strings on constructor init maybe move to db **/
+            situpsCsv = System.IO.File.ReadAllText(env.MapPath(@"data/male-situp-standards.csv"));
+            pushupsCsv = System.IO.File.ReadAllText(env.MapPath(@"data/male-pushups-standards.csv"));
+            twomilerunCsv = System.IO.File.ReadAllText(env.MapPath(@"data/male-2milerun-standards.csv"));
+        }
+
         // GET: api/apft
         // Get All Apft standards
         [HttpGet]
-        public String Get()
-        {
-
-            // TextReader reader = System.IO.File.OpenText(HostingEnvironment.MapPath(@"~/data/male-situp-standars.csv"));
-
-            //var csv = new CsvReader(reader);
-
-
-            //
-            // Read entire text file with TextReader.
-            //
-            //using (TextReader reader = File.OpenText(@"C:\perl.txt"))
-            //{
-            //  string text = reader.ReadToEnd();
-            //  Console.WriteLine(text.Length);
-            //}
-            return "";
+        public JsonResult Get()
+        { 
+            return Json( new {
+                success = true,
+                situpsCsv,
+                pushupsCsv,
+                twomilerunCsv
+            });
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("calculate")]
+        public string GetApftScore(int id)
         {
-            return "value";
+            return "score";
         }
 
         // POST api/values

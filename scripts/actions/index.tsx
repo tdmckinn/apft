@@ -12,6 +12,16 @@ const RESET_PT_SHEET: string = 'RESET_PT_SHEET'
 const GET_CSV_DATA: string = 'GET_CSV_DATA'
 const ROOT = 'http://localhost:61292'
 
+// extend Window Object since Parse is going to be used in the global scope
+// @TODO: move this out to globals section
+interface MyWindow extends Window {
+  Papa: {
+    parse: Function
+  }
+}
+
+declare var window: MyWindow;
+
 export const ActionTypes = {
   CALC_APFT_SCORE,
   EDIT_PT_EVENT,
@@ -38,9 +48,10 @@ export function resetPtSheet() {
 }
 
 export function recieveCsvData(eventStandards: JSON) {
+  console.log(window.Papa)
   return {
     type: GET_CSV_DATA,
-    json: eventStandards
+    json: window.Papa.parse(eventStandards)
   }
 }
 
@@ -50,8 +61,9 @@ export function loadCsvData() {
       .set('Accept', 'application/json')
       .end(function (err, res) {
         debugger;
+
         if (res) {
-          dispatch(recieveCsvData(res.body));
+          dispatch(recieveCsvData(res.text));
         }
       });
   }

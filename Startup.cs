@@ -7,6 +7,7 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Routing;
 using Microsoft.Framework.DependencyInjection;
+using System.IO;
 
 namespace ArmyApftTs
 {
@@ -29,6 +30,7 @@ namespace ArmyApftTs
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             // Configure the HTTP request pipeline.
             app.UseStaticFiles();
 

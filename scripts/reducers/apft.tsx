@@ -25,9 +25,10 @@ const initialState = {
 
 export function apft(state: ApftEvents, action) {
 
+  console.log(state)
   state = state || initialState;
   switch (action.type) {
-    case ActionTypes.CALC_APFT_SCORE:
+    case ActionTypes.EDIT_PT_EVENT:
       return action.event;
     case ActionTypes.CALC_APFT_SCORE:
       return state;
@@ -36,4 +37,6 @@ export function apft(state: ApftEvents, action) {
     default:
       return state;
   }
+
+  //GET_CSV_DATA
 }

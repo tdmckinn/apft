@@ -27,21 +27,28 @@ gulp.task('webpack', ['scripts', 'styles'], function (cb) {
   });
 });
 
+gulp.task('csv', function () {
+
+  return gulp.src(['./data/*.csv'])
+    .pipe(gulp.dest('./wwwroot/data/'));
+
+});
+
  
 gulp.task('theme', function () {
 
   return gulp.src(['./semantic/dist/**/*'])
-  .pipe(gulp.dest('./wwwroot/assets/sematic/dist'));
+    .pipe(gulp.dest('./wwwroot/assets/sematic/dist'));
 
 });
 
 gulp.task('styles', function () {
   gulp.src('./styles/**/*.scss')
-      .pipe(sass().on('error', sass.logError))
-      .pipe(gulp.dest('./wwwroot/assets/styles/'));
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./wwwroot/assets/styles/'));
 });
 
 gulp.task('default', function () {
   return gulp.src('./wwwroot/**/*', { read: false })
-     .pipe(clean());
+    .pipe(clean());
 });

@@ -1,6 +1,7 @@
 ﻿/// <reference path="../../typings/react/react.d.ts" />
 
 import * as React from 'react';
+import { calculatePtScore } from '../actions/index';
 
 enum Gender {
   Male,
@@ -90,7 +91,7 @@ class ArmyApftCalculator extends Apft {
                 </form>
               </div>
             <div className="extra content">
-              <button className="ui button">Calculate</button>
+              <button className="ui button" onClick={() => dispatch(calculatePtScore()) }>Calculate</button>
               </div>
             </div>
           </div>
