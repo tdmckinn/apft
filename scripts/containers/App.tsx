@@ -7,9 +7,10 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
 import * as ApftActions from '../actions/index';
+import PT from '../interfaces/index'
 
 interface Props {
-  apft: Object,
+  apft: PT.ApftEvents,
   dispatch: Function
 }
 

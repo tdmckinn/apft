@@ -25,12 +25,16 @@ declare var window: MyWindow;
 export const ActionTypes = {
   CALC_APFT_SCORE,
   EDIT_PT_EVENT,
-  RESET_PT_SHEET
+  RESET_PT_SHEET,
+  GET_CSV_DATA
 }
 
-export function calculatePtScore() {
+export function calculatePtScore(res) {
+  let { scoreTotal } = res;
+
   return {
-    type: ActionTypes.CALC_APFT_SCORE
+    type: ActionTypes.CALC_APFT_SCORE,
+    scoreTotal
   }
 }
 
@@ -47,11 +51,20 @@ export function resetPtSheet() {
   };
 }
 
-export function recieveCsvData(eventStandards: JSON) {
-  console.log(window.Papa)
+export function recieveCsvData(eventStandards: any) {
+
+  let csvData = {};
+
+  Object.keys(eventStandards).forEach(function (key) {
+    let val = eventStandards[key];
+    if (val !== true) {
+      csvData[key] = window.Papa.parse(val);
+    }
+  }); 
+
   return {
     type: GET_CSV_DATA,
-    json: window.Papa.parse(eventStandards)
+    csvData
   }
 }
 
@@ -59,11 +72,33 @@ export function loadCsvData() {
   return dispatch => {
     request.get(`${ROOT}/api/apft`)
       .set('Accept', 'application/json')
+      .end(function (err, res) { 
+        if (res && res.body.success) { 
+          dispatch(recieveCsvData(res.body));
+        }
+     });
+  }
+};
+
+export function calcApftRequest(state: any) {
+
+  let { sex, run, pushups, age, gender, branch, situps } = state;
+   
+  return dispatch => {
+    request.post(`${ROOT}/api/apft/calculate`)
+      .send({ 
+        run,
+        pushups,
+        situps,
+        age,
+        gender,
+        branch
+      })
+      .set('Accept', 'application/json')
       .end(function (err, res) {
-        debugger;
 
         if (res) {
-          dispatch(recieveCsvData(res.text));
+          dispatch(calculatePtScore(res.body));
         }
       });
   }

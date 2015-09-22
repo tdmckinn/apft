@@ -1,10 +1,12 @@
 ﻿/// <reference path="../../typings/react/react.d.ts" />
+/// <reference path="../interfaces/index" />
 
 import * as React from 'react';
 import ApftCalculator from './ApftCalculator'
+import PT from '../interfaces/index'
 
 interface Props {
-  apft: Object,
+  apft: PT.ApftEvents,
   dispatch: Function
 }
 
@@ -20,7 +22,6 @@ export default class MainSection extends React.Component<Props, any> {
     return (
       <div>
         <ApftCalculator apft={apft} dispatch={dispatch} />
-        <div>Im the main body</div>
       </div>
     )
   }

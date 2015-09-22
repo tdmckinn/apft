@@ -1,5 +1,5 @@
 ﻿
-## ARMY APFT example app using MS tech typescript / WebAPI  along with Facebook's Reactjs,.
+## ARMY APFT example app using MS tech typescript / WebAPI  along with Facebook's Reactjs.
 
 ## This is a Work in Progress
 Really just getting a feel for using typescript seeing how it changes my workflow vs using babel
@@ -12,7 +12,7 @@ I'm using Visual Studio Community 2015 its Free and an awesome IDE! [VS2015](htt
 IISExpress server
 - default port: 61292 change in project settings
 
-Using semantic for the UI may move to bootstrap 4 alpha version
+Using semantic for the UI may move to bootstrap 4 alpha version.
 For dependencies you need node installed -> get the globals out the way first
 
 ``` bash

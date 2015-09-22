@@ -1,27 +1,37 @@
 ﻿/// <reference path="../../typings/react/react.d.ts" />
+/// <reference path="../../typings/classnames/classnames.d.ts" />
 
 import * as React from 'react';
-import { calculatePtScore } from '../actions/index';
+import { calcApftRequest  } from '../actions/index';
+import PT from '../interfaces/index'
 
 enum Gender {
   Male,
   Female
 }
 
+interface ApftEvents {
+  run?: number;
+  pushups?: number;
+  situps?: number;
+  pullups?: number;
+  age: number;
+  gender: number;
+  branch: string
+}
+
 interface Props {
-  apft: Object,
+  apft: PT.ApftEvents,
   dispatch: Function
 }
 
 class Apft extends React.Component<Props, any> {
-  constructor(props) {
-    super(props)
-  }
-}
+  branches: Array<String>;
 
-class ArmyApftCalculator extends Apft {
   constructor(props) {
     super(props)
+
+    this.branches = ['Army', 'Airforce', 'Navy', 'Marines']
   }
 
   componentDidMount() {
@@ -29,28 +39,20 @@ class ArmyApftCalculator extends Apft {
   }
 
   render() {
-
+     
     //selected = "selected"
     const { apft, dispatch } = this.props
-     
+    
     return (
       <div>
         <div className="ui pointing menu">
           <a className="item">
             Home
             </a>
-          <a className="item">
-            Army
-            </a>
-          <a className="item active">
-            Airforce
-            </a>
-          <a className="item active">
-            Navy
-            </a>
-          <a className="item active">
-            Marines
-          </a>
+          {this.branches.map((branch, index) => {
+            return <a key={index} className={ apft.branch === branch ? 'item active' : 'item'}>{ branch }</a>
+          })
+          }
           <div className="right menu">
             <div className="item">
               <div className="ui transparent icon input">
@@ -90,14 +92,17 @@ class ArmyApftCalculator extends Apft {
                   </div>
                 </form>
               </div>
-            <div className="extra content">
-              <button className="ui button" onClick={() => dispatch(calculatePtScore()) }>Calculate</button>
-              </div>
+            <div className="extra content" style={{ textAlign: 'center' }}>
+              <button className="ui button" onClick={() => dispatch(calcApftRequest(apft)) }>Calculate</button>
+              <div className="ui left pointing label">
+                {apft.scoreTotal}
+               </div>
             </div>
           </div>
-    </div>
-      )
+        </div>
+      </div>
+    )
   }
 }
 
-export default ArmyApftCalculator;
+export default Apft;

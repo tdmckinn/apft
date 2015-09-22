@@ -11,7 +11,7 @@ var sass = require('gulp-sass');
 
 gulp.task("scripts", function (callback) {
 
-  return gulp.src(['./scripts/*.json', './scripts/**/*.tsx'])
+  return gulp.src(['./scripts/*.json', './scripts/**/*.tsx', './scripts/**/*.ts'])
     .pipe(gulp.dest('./wwwroot/'));
 
 });
