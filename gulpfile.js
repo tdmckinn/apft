@@ -34,7 +34,6 @@ gulp.task('csv', function () {
 
 });
 
- 
 gulp.task('theme', function () {
 
   return gulp.src(['./semantic/dist/**/*'])

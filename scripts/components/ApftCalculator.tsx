@@ -3,6 +3,7 @@
 
 import * as React from 'react';
 import { calcApftRequest  } from '../actions/index';
+import FitnessTable from './Tables'
 import PT from '../interfaces/index'
 
 enum Gender {
@@ -62,8 +63,8 @@ class Apft extends React.Component<Props, any> {
               </div>
             </div>
           </div>
-        <div className="ui segment">
-          <div className="ui card apft-card-container" style={{ marginLeft: '15', width: '50%' }}>
+        <div className="ui">
+          <div className="ui card apft-card-container" style={{ marginLeft: '15', float:'left' }}>
             <div className="content">
               <div className="header">Army APFT</div>
               </div>
@@ -98,7 +99,10 @@ class Apft extends React.Component<Props, any> {
                 {apft.scoreTotal}
                </div>
             </div>
+
           </div>
+        <FitnessTable  apft={apft} dispatch={dispatch} />
+
         </div>
       </div>
     )

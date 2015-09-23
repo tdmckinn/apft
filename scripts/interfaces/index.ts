@@ -9,9 +9,9 @@
     age: number;
     gender: number;
     branch: string;
-    pushupsCsv?: string;
-    situpsCsv?: string;
-    twomilerunCsv?: string;
+    pushupsCsv?: any;
+    situpsCsv?: any;
+    twomilerunCsv?: any;
     scoreTotal?: number
   }
 }

@@ -35,6 +35,5 @@ export function apft(state: PT.ApftEvents, action) {
     default:
       return state;
   }
-
-  //GET_CSV_DATA
+   
 }

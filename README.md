@@ -12,7 +12,7 @@ I'm using Visual Studio Community 2015 its Free and an awesome IDE! [VS2015](htt
 IISExpress server
 - default port: 61292 change in project settings
 
-Using semantic for the UI may move to bootstrap 4 alpha version.
+Using semantic UI.
 For dependencies you need node installed -> get the globals out the way first
 
 ``` bash
