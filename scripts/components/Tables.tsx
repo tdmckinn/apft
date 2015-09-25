@@ -24,10 +24,17 @@ class FitnessTable extends React.Component<Props, any> {
     const { apft, dispatch } = this.props
 
     let isCsvDataAvailablePushups = apft.pushupsCsv ? true : false 
+    let style: any = {
+      float: 'left',
+      width: '73%',
+      marginTop: '0',
+      boxSizing: 'content-box',
+      marginRight: '10'
+    }
 
     return (
-      <div className="ui raised very padded text container segment" style={{ float: 'right', width: '73%', marginTop: '0px' }}>
-        <h2 className="ui header">The Army Physical Fitness Test (APFT) Standards</h2>  
+      <div className="ui raised padded text container segment" style={style}>
+        <h2 className="ui header">The Army Physical Fitness Test (APFT) Standards - Pushups</h2>  
         <table className="ui celled table">
           <thead>
             <tr>
@@ -36,9 +43,15 @@ class FitnessTable extends React.Component<Props, any> {
           </thead>
           <tbody> 
            { isCsvDataAvailablePushups ? apft.pushupsCsv.data.map((row, index) => {
-              <tr key={index}>
-                {row.map(x => <td>{x}</td>) }
-               </tr>
+              return <tr key={index}>
+                {row.map((x, rindex) => { 
+                  // don't want to display the header info row twice
+                  if (index !== 0 && index !== 1) {
+                    return <td key={rindex}>{x}</td>
+                  }
+                })
+               }
+              </tr>
            }) : '' }
           </tbody> 
         </table> 

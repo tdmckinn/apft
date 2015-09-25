@@ -41,7 +41,6 @@ class Apft extends React.Component<Props, any> {
 
   render() {
      
-    //selected = "selected"
     const { apft, dispatch } = this.props
     
     return (
@@ -64,7 +63,7 @@ class Apft extends React.Component<Props, any> {
             </div>
           </div>
         <div className="ui">
-          <div className="ui card apft-card-container" style={{ marginLeft: '15', float:'left' }}>
+          <div className="ui card apft-card-container" style={{ marginLeft: '15', marginRight: '10',  float:'left' }}>
             <div className="content">
               <div className="header">Army APFT</div>
               </div>
