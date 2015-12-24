@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const config = require('../webpack.config');
 const path = require('path');
 const app = express();
+const api = require('./api/calc');
 
 //const compiler = webpack(config);
 
@@ -21,12 +22,9 @@ const app = express();
 
 // static
 
-//app.use('/wwwroot',  express.static(path.join(__dirname, '/wwwroot')));
 app.use(express.static( path.join(__dirname, '../wwwroot')));
 
-app.use('/api', (req, res) => {
-  
-});
+app.use('/api', api);
 
 // routes
 app.get('*', (req, res) => {

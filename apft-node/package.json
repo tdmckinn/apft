@@ -22,8 +22,8 @@
     "react-addons-css-transition-group": "^0.14.3",
     "react-addons-test-utils": "^0.14.3",
     "react-addons-update": "^0.14.3",
-    "react-redux": "^2.1.0",
-    "redux": "^2.0.0",
+    "react-redux": "^4.0.5",
+    "redux": "^3.0.5",
     "redux-devtools": "^2.1.0",
     "redux-logger": "^1.0.6",
     "redux-thunk": "^0.1.0",
@@ -61,6 +61,11 @@
       "bootstrap": "github:twbs/bootstrap@v4-dev",
       "font-awesome": "npm:font-awesome@^4.4.0",
       "twbs/bootstrap": "github:twbs/bootstrap@4.0.0-alpha"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
     }
   }
 }

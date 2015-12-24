@@ -29,7 +29,6 @@ gulp theme
 │   ├── reducers      # Reducers
 │   ├── store         # Store
 │   └── index.js      # entry file for webpack build
-│   └── tsconfig.json # typescript configuration
 └── webpack           # Webpack config 
 └── data              # Csv files
 
