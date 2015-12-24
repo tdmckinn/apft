@@ -1,4 +1,4 @@
-# apft-react-ts
-APFT app examples - front-end using react/redux
+# apft-react
+APFT app examples - front-end technologies
 
 #Numerous examples one day
