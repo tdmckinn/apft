@@ -11,6 +11,5 @@
 /semantic
 
 /scripts/**/*.map
-/scripts/**/*.jsx
 
 /Controllers 
