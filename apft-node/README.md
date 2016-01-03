@@ -9,7 +9,7 @@ For dependencies you need node installed -> get the globals out the way first
 ``` bash
 $ npm install
 $ npm install --global gulp
-$npm start
+$ npm start
 
 gulp webpack 
 gulp theme
@@ -30,6 +30,7 @@ gulp theme
 │   ├── store         # Store
 │   └── index.js      # entry file for webpack build
 └── webpack           # Webpack config 
+└── server            # server stuff express
 └── data              # Csv files
 
 

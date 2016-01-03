@@ -31,7 +31,9 @@ class FitnessTable extends Component {
         <table className="ui celled table">
           <thead>
             <tr>
-              {isCsvDataAvailablePushups ? apft.pushupsCsv.data[1].map(x => <th>{x}</th>) : '' }  
+              {isCsvDataAvailablePushups ? apft.pushupsCsv.data[1].map((x, index) => {
+                return <th key={index}>{x}</th>
+              }) : '' }  
             </tr>
           </thead>
           <tbody> 
