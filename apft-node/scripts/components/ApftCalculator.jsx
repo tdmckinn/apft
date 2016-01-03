@@ -9,7 +9,7 @@ class Apft extends Component {
   constructor(props) {
     super(props)
 
-    this.branches = ['Army', 'Airforce', 'Navy', 'Marines']
+    this.branches = ['Army', 'Airforce', 'Navy', 'Marines'];
   }
 
   componentDidMount() {
@@ -19,6 +19,14 @@ class Apft extends Component {
   render() {
      
     const { apft, dispatch } = this.props
+    const apftContainer = { 
+      marginLeft: '15', 
+      marginRight: '10',  
+      float:'left'
+    }
+    
+    const classLabel = 'apft-card__label';
+    const classInput = 'apft-card__input';
     
     return (
       <div>
@@ -40,32 +48,32 @@ class Apft extends Component {
             </div>
           </div>
         <div className="ui">
-          <div className="ui card apft-card-container" style={{ marginLeft: '15', marginRight: '10',  float:'left' }}>
+          <div className="ui card apft-card-container" style={apftContainer}>
             <div className="content">
               <div className="header">Army APFT</div>
               </div>
             <div className="content">
               <h4 className="ui sub header">Infromation</h4>
-              <form className="ui form">
+              <form className="ui form apft-card-form">
                 <div className="field">
-                  <label>Gender</label>
-                  <input name="gender" placeholder="gender..." type="text" />
+                  <label className={classLabel}>Gender</label>
+                  <input className={classInput} name="gender" placeholder="gender..." type="text" />
                   </div>
                 <div className="field">
-                  <label>Age</label>
-                  <input name="age" placeholder="age..." type="text" />
+                  <label className={classLabel}>Age</label>
+                  <input className={classInput} name="age" placeholder="age..." type="text" />
                   </div>
                 <div className="field">
-                  <label>Push-Ups</label>
-                  <input name="pushups" placeholder="push ups..." type="text" />
+                  <label className={classLabel}>Push-Ups</label>
+                  <input className={classInput} name="pushups" placeholder="push ups..." type="text" />
                   </div>
                 <div className="field">
-                  <label>Sit-Ups</label>
-                  <input name="situps" placeholder="sit ups..." type="text" />
+                  <label className={classLabel}>Sit-Ups</label>
+                  <input className={classInput} name="situps" placeholder="sit ups..." type="text" />
                   </div>
                 <div className="field">
-                  <label>2 Mile Run</label>
-                  <input name="2milerun" placeholder="2 mile run..." type="text" />
+                  <label className={classLabel}>2 Mile Run</label>
+                  <input className={classInput} name="2milerun" placeholder="2 mile run..." type="text" />
                   </div>
                 </form>
               </div>

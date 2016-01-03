@@ -45,8 +45,12 @@ export function recieveCsvData(eventStandards) {
 
   Object.keys(eventStandards).forEach(function (key) {
     let val = eventStandards[key];
+
     if (val !== true) {
-      csvData[key] = window.Papa.parse(val);
+      let parsedData = window.Papa.parse(val);
+      
+      if (parsedData.data.length !== 0)
+        csvData[key] = window.Papa.parse(val);
     }
   }); 
 
@@ -62,6 +66,7 @@ export function loadCsvData() {
       .set('Accept', 'application/json')
       .end(function (err, res) { 
         if (res && res.body.success) { 
+          console.log(res.body);
           dispatch(recieveCsvData(res.body));
         }
      });

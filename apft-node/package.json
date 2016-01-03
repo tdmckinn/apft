@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp",
     "start": "gulp --dev && npm run server",
-    "server": "node server/server.js",
+    "server": "cd server && node server",
     "test": "gulp test"
   },
   "dependencies": {
@@ -52,6 +52,7 @@
     "pg-promise": "^2.8.5",
     "require-dot-file": "^0.4.0",
     "run-sequence": "^1.1.2",
+    "tape": "^4.4.0",
     "webpack": "^1.12.0",
     "webpack-dev-middleware": "^1.2.0",
     "webpack-hot-middleware": "^2.4.1"

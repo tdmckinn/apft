@@ -1,21 +1,32 @@
 ﻿
+.apft-card {
+  
+  &-container {
+    width: 25%;
+  }
+
+  &__label {
+  }
+
+  &__input {
+  }
+}
+  
 .apft-card-container {
-
-  $inline-block: inline-block !important;
-  width: 25%;
-
-  div { 
-    label {
-      display: $inline-block;
+  
+  .apft-card-form {
+    
+    .field > .apft-card__label {
+      display: inline-block;
       padding-top: 7px;
       width: 25%;
     }
-
-    input {
-      display: $inline-block;
-      width: 65% !important;
-      margin-left: 15px !important;
+    
+    .field > .apft-card__input {
+      display: inline-block;
+      width: 65%;
+      margin-left: 15px;
     }
   }
-
 }
+  
