@@ -1,8 +1,10 @@
 ﻿
 import React, { Component, PropTypes } from 'react';
 
-export default function Header() {
+const Header = (props) => {
   return (
     <div style={{ display: 'none' }}></div>
   )
 }
+
+export default Header;

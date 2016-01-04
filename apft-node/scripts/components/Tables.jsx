@@ -1,19 +1,9 @@
 ﻿
 import React, { Component, PropTypes } from 'react';
 
-class FitnessTable extends Component { 
+const FitnessTable = (props) => {
 
-  constructor(props) {
-    super(props) 
-  }
-
-  componentDidMount() {
-
-  }
-
-  render() {
-
-    const { apft, dispatch } = this.props
+    const { apft, dispatch } = props
 
     let isCsvDataAvailablePushups = apft.pushupsCsv ? true : false
     
@@ -52,8 +42,6 @@ class FitnessTable extends Component {
         </table> 
       </div>
     )
-  }
-
-}
+ }
 
 export default FitnessTable;

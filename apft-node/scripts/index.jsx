@@ -10,11 +10,12 @@ import appReducers from './reducers';
 
 const store = configureStore(appReducers);
 
-// lets load the csv data upfront and use papa-parse to do the heavy lifting
+// lets load the csv data upfront
 store.dispatch(loadCsvData());
  
-  ReactDOM.render(
-    <Provider store={store}>
-     <App />
-    </Provider> ,
-    document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider> ,
+  document.getElementById('root')
+ );

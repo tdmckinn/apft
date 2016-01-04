@@ -3,17 +3,12 @@ import React, { Component, PropTypes } from 'react';
 import { calcApftRequest  } from '../actions/index';
 import FitnessTable from './Tables';
 
-
+const branches = ['Army', 'Airforce', 'Navy', 'Marines'];
+    
 class Apft extends Component {
 
   constructor(props) {
     super(props)
-
-    this.branches = ['Army', 'Airforce', 'Navy', 'Marines'];
-  }
-
-  componentDidMount() {
-
   }
 
   render() {
@@ -34,7 +29,7 @@ class Apft extends Component {
           <a className="item">
             Home
             </a>
-          {this.branches.map((branch, index) => {
+          {branches.map((branch, index) => {
             return <a key={index} className={ apft.branch === branch ? 'item active' : 'item'}>{ branch }</a>
           })
           }

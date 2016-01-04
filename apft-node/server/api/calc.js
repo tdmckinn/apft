@@ -3,17 +3,19 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
- 
+const path = require('path');
+const datapath = path.join(__dirname, '../../data/');
+
 let events = {};
 
-fs.readdir('../data/', (err, files) => {
+fs.readdir(datapath, (err, files) => {
   if (err)
     console.log(err);
   
   files.forEach((file,index) => {
     
     //resolve after last file read?
-    fs.readFile(`../data/${file}`, 'utf-8', (err, fileData) => {
+    fs.readFile(`${datapath}/${file}`, 'utf-8', (err, fileData) => {
       if (err)
         console.log(err);
         
@@ -23,7 +25,7 @@ fs.readdir('../data/', (err, files) => {
 
 });
 
-function calcuateApftScore(pushupsCsv, situpsCsv, twomilerunCsv) {
+function calcuateApftScore(situpsCsv, pushupsCsv, twomilerunCsv) {
   let pushupsCsvLines = pushupsCsv.split('\n');
   let situpsCsvLines = situpsCsv.split('\n');
   let runCsvLines = twomilerunCsv.split('\n');
@@ -33,8 +35,8 @@ function calcuateApftScore(pushupsCsv, situpsCsv, twomilerunCsv) {
   let ageIndex = 0;
   let scoreTotal = 0;
 
-  for (let i = 0;  i < ageRowData.Length; i++) {
-    if (ageRowData[i] != String.Empty) {
+  for (let i = 0;  i < ageRowData.length; i++) {
+    if (ageRowData[i]) {
       let temp = ageRowData[i].split('-');
       let min = Number(temp[0]);
       let max = Number(temp[1]);
@@ -47,26 +49,26 @@ function calcuateApftScore(pushupsCsv, situpsCsv, twomilerunCsv) {
     }
   }
 
-  for (let i = 0; i < pushupsCsvLines.length; i++) {
-    if (i != 0 && i != 1) {
-      let temp = pushupsCsvLines[i].split(',');
+  for (let j = 0; j < pushupsCsvLines.length; j++) {
+    if (j !== 0 && j !== 1) {
+      let temp = pushupsCsvLines[j].split(',');
       let tempPushups = Number(temp[0]);
       let pushups = 64; // test.pushups 
 
-      if(tempPushups == pushups) {
+      if(tempPushups === pushups) {
         scoreTotal += Number(temp[ageIndex]); 
         break;
       }
     }
   }
 
-  for (let i = 0; i < situpsCsvLines.length; i++) {
-    if (i != 0 && i != 1) {
-      let temp = situpsCsvLines[i].split(',');
+  for (let k = 0; k < situpsCsvLines.length; k++) {
+    if (k !== 0 && k !== 1) {
+      let temp = situpsCsvLines[k].split(',');
       let tempSitups = Number(temp[0]);
       let situps = 77; // test.pushups 
 
-      if (tempSitups == situps) {
+      if (tempSitups === situps) {
         scoreTotal += Number(temp[ageIndex]); 
         break;
       }
@@ -76,16 +78,16 @@ function calcuateApftScore(pushupsCsv, situpsCsv, twomilerunCsv) {
   let lastRunTime = 0;
   let lastRunSplit = "".split();
 
-  for (let i = runCsvLines.length -1; i >=0; i--) {
-    if (i != 0 && !runCsvLines[i]) {
-      let temp = runCsvLines[i].split(',');
+  for (let l = runCsvLines.length -1; l >= 0; l--) {
+    if (l !== 0 && !runCsvLines[l]) {
+      let temp = runCsvLines[l].split(',');
       let tempRun = temp[0].replace(":", "");
       let run = 1302; // test.pushups 
 
       if (!tempRun) {
         var tempRunTime = Number(tempRun); 
 
-        if (tempRunTime == run) {
+        if (tempRunTime === run) {
           scoreTotal += Number(temp[ageIndex]);
           break;
         } 
@@ -93,7 +95,7 @@ function calcuateApftScore(pushupsCsv, situpsCsv, twomilerunCsv) {
         lastRunTime = tempRunTime;
         lastRunSplit = temp;
       }
-      else if (lastRunTime != 0 && lastRunTime < run) {
+      else if (lastRunTime !== 0 && lastRunTime < run) {
         scoreTotal += Number(lastRunSplit[ageIndex]);
         break;
       }
@@ -110,15 +112,15 @@ router.route('/apft')
   .get((req, res, next) => {
     res.json({
       success: true,
-      situpsCsv: events[0],
+      situpsCsv: events[2],
       pushupsCsv: events[1],
-      twomilerunCsv: events[2]
+      twomilerunCsv: events[0]
     })
   });
 
 router.route('/apft/calculate')
   .post((req, res, next) => {
-    res.json(calcuateApftScore(events[0], events[1], events[2]))
+    res.json(calcuateApftScore(events[2], events[1], events[0]))
   });
 
 module.exports = router;
