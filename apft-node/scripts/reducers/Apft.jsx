@@ -6,7 +6,7 @@ const initialState = {
   pushups: 0,
   situps: 0,
   age: 0,
-  gender: 0,
+  gender: '',
   branch: 'Army',
   scoreTotal: 0
 }

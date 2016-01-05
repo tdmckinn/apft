@@ -5,13 +5,13 @@ const branches = ['Army', 'Airforce', 'Navy', 'Marines'];
 
 const Header = (props) => {
 
-  const { apft, dispatch } = props;
+  const { apft, onClick } = props;
 
   return (
     <div className="ui pointing menu">
       <a className="item"> Home </a>
       {branches.map((branch, index) => {
-        return <a key={index} className={ apft.branch === branch ? 'item active' : 'item'}>{ branch }</a>
+        return <a key={index} className={ apft.branch === branch ? 'item active' : 'item'} onClick={e => onClick(e)}>{ branch }</a>
       })
       }
       <div className="right menu">

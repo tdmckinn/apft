@@ -10,7 +10,14 @@ import ApftForm from '../components/ApftForm';
 class App extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
+    this.handleChange = this.handleClick.bind(this)
+
+  }
+  
+  handleClick(e) {
+    
+    console.log(e);
   }
 
   render() {
@@ -18,9 +25,9 @@ class App extends Component {
 
     return (
     <div>
-      <Header apft={apft} dispatch={dispatch} />
+      <Header apft={apft} onClick={this.handleClick} />
       <ApftForm apft={apft} dispatch={dispatch} />
-      <FitnessTable apft={apft} dispatch={dispatch} />
+      <FitnessTable apft={apft} />
     </div>
     );
   }
@@ -28,11 +35,10 @@ class App extends Component {
 
 function mapStateToProps(state) {
 
-  const { apft, dispatch } = state
+  const { apft } = state
 
   return {
-    apft,
-    dispatch
+    apft
   };
 }
 

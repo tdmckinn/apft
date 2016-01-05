@@ -16,6 +16,7 @@ class ApftForm extends Component {
     }
 
     const { apft, dispatch } = this.props;
+    const { run, pushups, situps, age, gender, branch } = apft;
     const classLabel = 'apft-card__label';
     const classInput = 'apft-card__input';
 
@@ -23,30 +24,30 @@ class ApftForm extends Component {
       <div className="ui">
         <div className="ui card apft-card-container" style={apftContainer}>
           <div className="content">
-            <div className="header">Army APFT </div>
+            <div className="header">{branch} APFT </div>
           </div>
           <div className="content">
             <h4 className="ui sub header">Infromation </h4>
             <form className="ui form apft-card-form">
               <div className="field">
                 <label className={classLabel}>Gender </label>
-                <input className={classInput} name="gender" placeholder="gender..." type="text" />
+                <input className={classInput} name="gender" placeholder="gender..." type="text" value={gender} />
                 </div>
               <div className="field">
                 <label className={classLabel}>Age </label>
-                <input className={classInput} name="age" placeholder="age..." type="text" />
+                <input className={classInput} name="age" placeholder="age..." type="text" value={age || ''} />
                 </div>
               <div className="field">
                 <label className={classLabel}>Push-Ups </label>
-                <input className={classInput} name="pushups" placeholder="push ups..." type="text" />
+                <input className={classInput} name="pushups" placeholder="push ups..." type="text" value={pushups || ''} />
                 </div>
               <div className="field">
                 <label className={classLabel}>Sit-Ups </label>
-                <input className={classInput} name="situps" placeholder="sit ups..." type="text" />
+                <input className={classInput} name="situps" placeholder="sit ups..." type="text" value={situps || ''} />
                 </div>
               <div className="field">
                 <label className={classLabel}>2 Mile Run </label>
-                <input className={classInput} name="2milerun" placeholder="2 mile run..." type="text" />
+                <input className={classInput} name="2milerun" placeholder="2 mile run..." type="text" value={run || ''}/>
               </div>
             </form>
           </div>
