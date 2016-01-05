@@ -5,6 +5,7 @@ const config = require('../webpack.config');
 const path = require('path');
 const app = express();
 const api = require('./api/calc');
+const bodyParser = require('body-parser');
 
 //const compiler = webpack(config);
 
@@ -20,8 +21,7 @@ const api = require('./api/calc');
 // config
 //app.set('view engine', 'jade');
 
-// static
-
+app.use(bodyParser.json());
 app.use(express.static( path.join(__dirname, '../wwwroot')));
 
 app.use('/api', api);

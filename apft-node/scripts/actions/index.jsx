@@ -75,7 +75,7 @@ export function loadCsvData() {
 
 export function calcApftRequest(state) {
 
-  let { sex, run, pushups, age, gender, branch, situps } = state;
+  let { age, gender, run, pushups, branch, situps } = state;
    
   return dispatch => {
     request.post(`${ROOT}/api/apft/calculate`)

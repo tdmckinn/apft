@@ -17,7 +17,7 @@ class App extends Component {
 
     return (
     <div>
-      <Header />
+      <Header apft={apft} dispatch={dispatch} />
       <MainSection apft={apft} dispatch={dispatch}/>
     </div>
     );

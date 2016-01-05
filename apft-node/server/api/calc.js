@@ -25,7 +25,27 @@ fs.readdir(datapath, (err, files) => {
 
 });
 
-function calcuateApftScore(situpsCsv, pushupsCsv, twomilerunCsv) {
+function eventTotal(csvlines, ageIndex, eventValue) {
+  
+    let eventTotal = 0;
+    
+    for (let j = 0; j < csvlines.length; j++) {
+    if (j !== 0 && j !== 1) {
+      let temp = csvlines[j].split(',');
+      let tempEventVal = Number(temp[0]);
+      let eventVal = Number(eventValue); 
+
+      if(tempEventVal === eventVal) {
+        eventTotal += Number(temp[ageIndex]); 
+        break;
+      }
+    }
+  }
+  
+  return eventTotal;
+}
+
+function calcuateApftScore(apft, situpsCsv, pushupsCsv, twomilerunCsv) {
   let pushupsCsvLines = pushupsCsv.split('\n');
   let situpsCsvLines = situpsCsv.split('\n');
   let runCsvLines = twomilerunCsv.split('\n');
@@ -41,7 +61,7 @@ function calcuateApftScore(situpsCsv, pushupsCsv, twomilerunCsv) {
       let min = Number(temp[0]);
       let max = Number(temp[1]);
 
-      let age = 24; // test.age
+      let age = Number(apft.age);
       if (age >= min && age <= max) {
         ageIndex = i;
         break;
@@ -49,43 +69,20 @@ function calcuateApftScore(situpsCsv, pushupsCsv, twomilerunCsv) {
     }
   }
 
-  for (let j = 0; j < pushupsCsvLines.length; j++) {
-    if (j !== 0 && j !== 1) {
-      let temp = pushupsCsvLines[j].split(',');
-      let tempPushups = Number(temp[0]);
-      let pushups = 64; // test.pushups 
-
-      if(tempPushups === pushups) {
-        scoreTotal += Number(temp[ageIndex]); 
-        break;
-      }
-    }
-  }
-
-  for (let k = 0; k < situpsCsvLines.length; k++) {
-    if (k !== 0 && k !== 1) {
-      let temp = situpsCsvLines[k].split(',');
-      let tempSitups = Number(temp[0]);
-      let situps = 77; // test.pushups 
-
-      if (tempSitups === situps) {
-        scoreTotal += Number(temp[ageIndex]); 
-        break;
-      }
-    }
-  }
-
+ scoreTotal += eventTotal(pushupsCsvLines, ageIndex, apft.pushups); 
+ scoreTotal += eventTotal(situpsCsvLines, ageIndex, apft.situps); 
+ 
   let lastRunTime = 0;
-  let lastRunSplit = "".split();
+  let lastRunSplit;
 
   for (let l = runCsvLines.length -1; l >= 0; l--) {
     if (l !== 0 && !runCsvLines[l]) {
       let temp = runCsvLines[l].split(',');
       let tempRun = temp[0].replace(":", "");
-      let run = 1302; // test.pushups 
+      let run = Number(apft.run);
 
       if (!tempRun) {
-        var tempRunTime = Number(tempRun); 
+        let tempRunTime = Number(tempRun); 
 
         if (tempRunTime === run) {
           scoreTotal += Number(temp[ageIndex]);
@@ -120,7 +117,7 @@ router.route('/apft')
 
 router.route('/apft/calculate')
   .post((req, res, next) => {
-    res.json(calcuateApftScore(events[2], events[1], events[0]))
+    res.json(calcuateApftScore(req.body, events[2], events[1], events[0]))
   });
 
 module.exports = router;

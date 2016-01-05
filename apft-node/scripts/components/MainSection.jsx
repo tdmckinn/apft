@@ -1,20 +1,19 @@
 ﻿
 import React, { Component, PropTypes } from 'react';
-import ApftCalculator from './ApftCalculator';
+import { calcApftRequest  } from '../actions/index';
+import FitnessTable from './Tables';
+import ApftForm from './ApftForm';
 
-export default class MainSection extends Component {
-  constructor(props) {
-    super(props)
-  }
+const MainSection = (props) => {
 
-  render() {
+  const { apft, dispatch } = props;
 
-    const { apft, dispatch } = this.props;
-
-    return (
-      <div>
-        <ApftCalculator apft={apft} dispatch={dispatch} />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <ApftForm apft={apft} dispatch={dispatch} />
+      <FitnessTable apft={apft} dispatch={dispatch} />
+    </div>
+  )
 }
+
+export default MainSection;
