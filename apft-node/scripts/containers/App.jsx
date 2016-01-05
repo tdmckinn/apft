@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import MainSection from '../components/MainSection';
 import * as ApftActions from '../actions/index';
+import FitnessTable from '../components/Tables';
+import ApftForm from '../components/ApftForm';
 
 class App extends Component {
 
@@ -18,7 +19,8 @@ class App extends Component {
     return (
     <div>
       <Header apft={apft} dispatch={dispatch} />
-      <MainSection apft={apft} dispatch={dispatch}/>
+      <ApftForm apft={apft} dispatch={dispatch} />
+      <FitnessTable apft={apft} dispatch={dispatch} />
     </div>
     );
   }
