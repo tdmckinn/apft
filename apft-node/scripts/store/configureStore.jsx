@@ -1,6 +1,5 @@
 ﻿'use strict';
 
-
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
